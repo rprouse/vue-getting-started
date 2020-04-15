@@ -19,11 +19,11 @@
               </div>
               <div class="field">
                 <label class="label" for="firstName">first name</label>
-                <input class="input" id="firstName" :value="hero.firstName" />
+                <input class="input" id="firstName" v-model="hero.firstName" />
               </div>
               <div class="field">
                 <label class="label" for="lastName">last name</label>
-                <input class="input" id="lastName" :value="hero.lastName" />
+                <input class="input" id="lastName" v-model="hero.lastName" />
               </div>
               <div class="field">
                 <label class="label" for="description">description</label>
@@ -31,7 +31,7 @@
                   class="input"
                   id="description"
                   type="text"
-                  :value="hero.description"
+                  v-model="hero.description"
                 />
               </div>
               <div class="field">
@@ -83,7 +83,9 @@
             </button>
           </footer>
         </div>
-        <div class="notification is-info"><pre>{{ message }}</pre></div>
+        <div class="notification is-info">
+          <pre>{{ message }}</pre>
+        </div>
       </div>
     </div>
   </div>

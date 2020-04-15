@@ -7,25 +7,32 @@
       <div class="column is-8">
         <div class="card edit-detail">
           <header class="card-header">
-            <p class="card-header-title"></p>
+            <p class="card-header-title">
+              {{ hero.firstName }}
+            </p>
           </header>
           <div class="card-content">
             <div class="content">
               <div class="field">
                 <label class="label" for="id">id</label>
-                <label class="input" id="id" readonly></label>
+                <label class="input" id="id" readonly>{{ hero.id }}</label>
               </div>
               <div class="field">
                 <label class="label" for="firstName">first name</label>
-                <input class="input" id="firstName" />
+                <input class="input" id="firstName" :value="hero.firstName" />
               </div>
               <div class="field">
                 <label class="label" for="lastName">last name</label>
-                <input class="input" id="lastName" />
+                <input class="input" id="lastName" :value="hero.lastName" />
               </div>
               <div class="field">
                 <label class="label" for="description">description</label>
-                <textarea class="input" id="description" type="text" />
+                <textarea
+                  class="input"
+                  id="description"
+                  type="text"
+                  :value="hero.description"
+                />
               </div>
               <div class="field">
                 <label class="label">cape color</label>
@@ -76,7 +83,7 @@
             </button>
           </footer>
         </div>
-        <div class="notification is-info"></div>
+        <div class="notification is-info">{{ message }}</div>
       </div>
     </div>
   </div>
@@ -85,5 +92,19 @@
 <script>
 export default {
   name: 'Heroes',
+  data() {
+    return {
+      hero: {
+        id: 12,
+        firstName: 'Juliette',
+        lastName: 'Prouse',
+        description: 'The dog whisperer',
+        capeColor: '',
+        power: '',
+        active: true,
+      },
+      message: '',
+    };
+  },
 };
 </script>

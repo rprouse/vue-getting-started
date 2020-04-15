@@ -63,13 +63,21 @@
                   />
                   green
                 </label>
-                <div class="color-line" :style="{ 'background-color': hero.capeColor}"></div>
+                <div
+                  class="color-line"
+                  :style="{ 'background-color': hero.capeColor }"
+                ></div>
               </div>
               <div class="field">
                 <label for="power">
                   super power
                   <div class="select is-primary">
-                    <select id="power">
+                    <select
+                      id="power"
+                      v-model="hero.power"
+                      @keyup.esc="clearPower"
+                      :class="{ invalid: !hero.power }"
+                    >
                       <option disabled value>Please select one</option>
                       <option>Speed</option>
                       <option>Flight</option>
@@ -134,6 +142,9 @@ export default {
     },
     save() {
       this.message = JSON.stringify(this.hero, null, '\n');
+    },
+    clearPower() {
+      this.hero.power = '';
     },
   },
 };

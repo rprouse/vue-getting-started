@@ -8,6 +8,13 @@
         <header class="card-header">
           <p class="card-header-title">heroes list</p>
         </header>
+        <ul class="list is-hoverable">
+          <li v-for="hero in heroes" :key="hero.id">
+            <a class="list-item">
+              <span>{{ hero.firstName }}</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="columns">
@@ -68,26 +75,26 @@ export default {
       heroes: [
         {
           id: 10,
-          firstName: 'Ella',
-          lastName: 'Papa',
+          firstName: 'Lynda',
+          lastName: 'Prouse',
           description: 'fashionista',
         },
         {
           id: 20,
-          firstName: 'Madelyn',
-          lastName: 'Papa',
-          description: 'the cat whisperer',
+          firstName: 'Juliette',
+          lastName: 'Prouse',
+          description: 'the dog whisperer',
         },
         {
           id: 30,
-          firstName: 'Haley',
-          lastName: 'Papa',
-          description: 'pen wielder',
+          firstName: 'Rob',
+          lastName: 'Prouse',
+          description: 'code monkey',
         },
         {
           id: 40,
-          firstName: 'Landon',
-          lastName: 'Papa',
+          firstName: 'Bob',
+          lastName: 'Prouse',
           description: 'arc trooper',
         },
       ],

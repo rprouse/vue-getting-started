@@ -10,7 +10,7 @@
         </header>
         <ul class="list is-hoverable">
           <li v-for="hero in heroes" :key="hero.id">
-            <a class="list-item">
+            <a class="list-item" @click="heroSelected(hero)">
               <span>{{ hero.firstName }}</span>
             </a>
           </li>
@@ -99,6 +99,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    heroSelected(hero) {
+      this.selectedHero = hero;
+    },
   },
 };
 </script>

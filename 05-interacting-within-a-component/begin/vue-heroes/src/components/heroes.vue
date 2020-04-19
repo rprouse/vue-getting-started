@@ -111,6 +111,13 @@ const ourHeroes = [
 ];
 export default {
   name: 'Heroes',
+  data() {
+    return {
+      selectedHero: undefined,
+      message: '',
+      heroes: ourHeroes,
+    };
+  },
   methods: {
     handleTheCapes(newValue) {
       const value = parseInt(newValue, 10);

@@ -115,10 +115,25 @@ export default {
     return {
       selectedHero: undefined,
       message: '',
-      heroes: ourHeroes,
+      heroes: [],
     };
   },
+  created() {
+    this.loadData();
+  },
   methods: {
+    async getData() {
+      // simulate hitting the network
+      return new Promise(resolve => {
+        setTimeout(() => resolve(ourHeroes), 1500);
+      });
+    },
+    async loadData() {
+      this.heroes = [];
+      this.message = 'Loading...';
+      this.heroes = await this.getData();
+      this.message = '';
+    },
     handleTheCapes(newValue) {
       const value = parseInt(newValue, 10);
       switch (value) {

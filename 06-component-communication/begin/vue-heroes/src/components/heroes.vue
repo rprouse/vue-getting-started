@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { ourHeroes } from '../shared';
+import { ourHeroes, lifecycleHooks, heroWatchers, logger } from '../shared';
 import HeroDetail from '@/components/hero-detail';
 
 export default {
@@ -63,6 +63,7 @@ export default {
   components: {
     HeroDetail,
   },
+  mixins: [lifecycleHooks, heroWatchers, logger],
   created() {
     this.loadHeroes();
   },

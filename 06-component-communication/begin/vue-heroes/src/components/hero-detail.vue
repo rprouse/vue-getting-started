@@ -78,7 +78,7 @@
 
 <script>
 import { format } from 'date-fns';
-import { displayDateFormat } from '../shared';
+import { displayDateFormat, lifecycleHooks } from '../shared';
 
 export default {
   name: 'HeroDetail',
@@ -94,6 +94,7 @@ export default {
       clonedHero: { ...this.hero },
     };
   },
+  mixins: [lifecycleHooks],
   computed: {
     fullName() {
       return this.clonedHero

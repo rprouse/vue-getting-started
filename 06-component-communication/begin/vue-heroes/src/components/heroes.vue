@@ -31,6 +31,7 @@
           <!-- <heroes-list> -->
 
           <!-- <hero-detail> -->
+          <HeroDetail v-if="selectedHero" />
           <div v-if="selectedHero">
             <div class="card">
               <header class="card-header">
@@ -124,8 +125,8 @@
 
 <script>
 import { format } from 'date-fns';
-
 import { displayDateFormat, ourHeroes } from '../shared';
+import HeroDetail from '@/components/hero-detail';
 
 export default {
   name: 'Heroes',
@@ -136,6 +137,9 @@ export default {
       message: '',
       capeMessage: '',
     };
+  },
+  components: {
+    HeroDetail,
   },
   created() {
     this.loadHeroes();

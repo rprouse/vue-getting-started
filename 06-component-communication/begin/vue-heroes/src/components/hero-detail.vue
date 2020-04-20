@@ -63,14 +63,11 @@
         </div>
       </div>
       <footer class="card-footer">
-        <button
-          class="link card-footer-item cancel-button"
-          @click="cancelHero()"
-        >
+        <button class="link card-footer-item cancel-button" @click="cancel">
           <i class="fas fa-undo"></i>
           <span>Cancel</span>
         </button>
-        <button class="link card-footer-item" @click="saveHero()">
+        <button class="link card-footer-item" @click="save">
           <i class="fas fa-save"></i>
           <span>Save</span>
         </button>
@@ -105,11 +102,13 @@ export default {
     },
   },
   methods: {
-    cancelHero() {
-      // TODO
+    cancel() {
+      console.log('cancel in child');
+      this.$emit('cancel');
     },
-    saveHero() {
-      // TODO
+    save() {
+      console.log('save in child');
+      this.$emit('save', this.clonedHero);
     },
     handleTheCapes(newValue) {
       const value = parseInt(newValue, 10);

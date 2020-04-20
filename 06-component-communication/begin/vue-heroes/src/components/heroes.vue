@@ -31,7 +31,12 @@
           <!-- <heroes-list> -->
 
           <!-- <hero-detail> -->
-          <HeroDetail v-if="selectedHero" :hero="selectedHero" />
+          <HeroDetail
+            v-if="selectedHero"
+            :hero="selectedHero"
+            @save="save"
+            @cancel="cancel"
+          />
           <!-- </hero-detail> -->
 
           <div class="notification is-info" v-show="message">{{ message }}</div>
@@ -73,12 +78,14 @@ export default {
       this.heroes = await this.getHeroes();
       this.message = '';
     },
-    cancelHero() {
+    cancel() {
+      console.log('cancel in parent');
       this.selectedHero = undefined;
     },
-    saveHero() {
-      const index = this.heroes.findIndex(h => h.id === this.selectedHero.id);
-      this.heroes.splice(index, 1, this.selectedHero);
+    save(hero) {
+      console.log('save in parent');
+      const index = this.heroes.findIndex(h => h.id === hero.id);
+      this.heroes.splice(index, 1, hero);
       this.heroes = [...this.heroes];
       this.selectedHero = undefined;
     },

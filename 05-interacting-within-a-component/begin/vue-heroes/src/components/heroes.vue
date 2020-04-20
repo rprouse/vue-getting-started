@@ -62,6 +62,19 @@
                 />
               </div>
               <div class="field">
+                <label class="label" for="originDate">origin date</label>
+                <input
+                  class="input"
+                  type="date"
+                  id="originDate"
+                  v-model="selectedHero.originDate"
+                />
+                <p class="comment">
+                  My origin story began on
+                  {{ selectedHero.originDate | formatDate }}
+                </p>
+              </div>
+              <div class="field">
                 <label class="label" for="capeMessage">cape message</label>
                 <label class="input" name="capeMessage">{{
                   capeMessage
@@ -98,6 +111,9 @@
 </template>
 
 <script>
+import { format } from 'date-fns';
+const inputDateFormat = 'YYYY-MM-DD';
+const displayDateFormat = 'MMM DD, YYYY';
 const ourHeroes = [
   {
     id: 10,
@@ -105,6 +121,7 @@ const ourHeroes = [
     lastName: 'Papa',
     capeCounter: 1,
     description: 'fashionista',
+    originDate: format(new Date(1996, 5, 1), inputDateFormat),
   },
   {
     id: 20,
@@ -112,6 +129,7 @@ const ourHeroes = [
     lastName: 'Papa',
     capeCounter: 3,
     description: 'the cat whisperer',
+    originDate: format(new Date(1999, 8, 12), inputDateFormat),
   },
   {
     id: 30,
@@ -119,6 +137,7 @@ const ourHeroes = [
     lastName: 'Papa',
     capeCounter: 2,
     description: 'pen wielder',
+    originDate: format(new Date(1968, 4, 8), inputDateFormat),
   },
   {
     id: 40,
@@ -126,6 +145,7 @@ const ourHeroes = [
     lastName: 'Papa',
     capeCounter: 0,
     description: 'arc trooper',
+    originDate: format(new Date(1974, 2, 21), inputDateFormat),
   },
 ];
 export default {
@@ -196,6 +216,11 @@ export default {
         console.log(`Watcher evaluated ${oldValue} => ${newValue}`);
         this.handleTheCapes(newValue);
       },
+    },
+  },
+  filters: {
+    formatDate: function(value) {
+      return format(value, displayDateFormat);
     },
   },
 };

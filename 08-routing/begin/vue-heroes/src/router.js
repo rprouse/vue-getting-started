@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Heroes from './views/heroes.vue';
-import HeroDetail from './views/hero-detail.vue';
 
 Vue.use(Router);
 
@@ -16,12 +14,14 @@ export default new Router({
     {
       path: '/heroes',
       name: 'heroes',
-      component: Heroes,
+      component: () =>
+        import(/* webpackChunkName: "heroes" */ './views/heroes.vue'),
     },
     {
       path: '/heroes/:id',
       name: 'hero-detail',
-      component: HeroDetail,
+      component: () =>
+        import(/* webpackChunkName: "heroes" */ './views/hero-detail.vue'),
       props: r => ({ id: parseInt(r.params.id) }),
     },
     {

@@ -61,8 +61,8 @@
 
 <script>
 import Modal from '@/components/modal';
-import { mapState } from 'vuex';
-import { dataService } from '../shared';
+import { GET_HEROES_ACTION } from '../store/action_types';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'Heroes',
@@ -80,6 +80,7 @@ export default {
     await this.loadHeroes();
   },
   methods: {
+    ...mapActions([GET_HEROES_ACTION]),
     askToDelete(hero) {
       this.heroToDelete = hero;
       this.showModal = true;
@@ -90,13 +91,15 @@ export default {
     async deleteHero() {
       this.closeModal();
       if (this.heroToDelete) {
-        dataService.deleteHero(this.heroToDelete);
+        //dataService.deleteHero(this.heroToDelete);
       }
       await this.loadHeroes();
     },
     async loadHeroes() {
       this.message = 'getting the heroes, please be patient';
-      //this.heroes = await dataService.getHeroes();
+      //this.heroes = await dataService.getHeroes(); // The non-Vuex way
+      // await this.$store.dispatch(GET_HEROES_ACTION); // The Vuex way
+      await this.getHeroesAction(); // Easier? Use the mapped action from above
       this.message = '';
     },
   },

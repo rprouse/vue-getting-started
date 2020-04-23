@@ -61,13 +61,13 @@
 
 <script>
 import Modal from '@/components/modal';
+import { mapState } from 'vuex';
 import { dataService } from '../shared';
 
 export default {
   name: 'Heroes',
   data() {
     return {
-      heroes: [],
       heroToDelete: null,
       message: '',
       showModal: false,
@@ -95,13 +95,18 @@ export default {
       await this.loadHeroes();
     },
     async loadHeroes() {
-      this.heroes = [];
       this.message = 'getting the heroes, please be patient';
-      this.heroes = await dataService.getHeroes();
+      //this.heroes = await dataService.getHeroes();
       this.message = '';
     },
   },
   computed: {
+    // heroes() {
+    //   return this.$store.state.heroes;
+    // },
+    //...mapState({heroes: state => state.heroes}), // This is the same as above
+    //...mapState({ heroes: 'heroes' }), // And this is even simpler
+    ...mapState(['heroes']), // And simpler yet
     modalMessage() {
       const name =
         this.heroToDelete && this.heroToDelete.fullName
